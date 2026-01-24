@@ -5,10 +5,17 @@
 
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { slugToBook, bookToSlug } from '@/lib/bible'
+import { slugToBook, bookToSlug, getBibleIndex } from '@/lib/bible'
 
 interface PageProps {
   params: Promise<{ book: string }>
+}
+
+export function generateStaticParams() {
+  const index = getBibleIndex()
+  return index.books.map(book => ({
+    book: bookToSlug(book.name),
+  }))
 }
 
 export async function generateMetadata({ params }: PageProps) {

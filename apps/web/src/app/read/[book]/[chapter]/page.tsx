@@ -11,10 +11,27 @@ import {
   getChapter,
   getPreviousChapter,
   getNextChapter,
+  getBibleIndex,
 } from '@/lib/bible'
 
 interface PageProps {
   params: Promise<{ book: string; chapter: string }>
+}
+
+export function generateStaticParams() {
+  const index = getBibleIndex()
+  const params: { book: string; chapter: string }[] = []
+
+  for (const book of index.books) {
+    for (let ch = 1; ch <= book.chapters; ch++) {
+      params.push({
+        book: bookToSlug(book.name),
+        chapter: ch.toString(),
+      })
+    }
+  }
+
+  return params
 }
 
 export async function generateMetadata({ params }: PageProps) {
