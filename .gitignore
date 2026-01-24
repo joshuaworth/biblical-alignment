@@ -1,0 +1,66 @@
+# 📦 Dependencies
+node_modules/
+.pnpm-store/
+
+# 🏗️ Build outputs
+dist/
+build/
+.next/
+.turbo/
+out/
+
+# 📱 Mobile builds
+*.ipa
+*.apk
+*.aab
+ios/Pods/
+android/.gradle/
+android/app/build/
+
+# 🔧 IDE & Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# 🔐 Environment & secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# 📊 Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 🧪 Testing
+coverage/
+.nyc_output/
+
+# 🤖 AI/ML
+*.pkl
+*.h5
+*.onnx
+embeddings/*.bin
+ai/embeddings/*.json
+
+# 📦 Package artifacts
+*.tgz
+*.tar.gz
+
+# 🗄️ Database
+*.db
+*.sqlite
+*.sqlite3
+
+# 📁 Temporary files
+tmp/
+temp/
+.cache/

@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* 📖 Biblical Alignment Design System */
+/* Using Tailwind CSS v4 CSS-first configuration */
+
+@theme {
+  /* 🎨 Colors - Inspired by ancient scrolls and modern clarity */
+  --color-scripture: #1a1a2e;
+  --color-parchment: #faf8f5;
+  --color-gold: #d4a853;
+  --color-gold-dark: #b8922e;
+  --color-ink: #2d2d2d;
+  --color-ink-light: #6b6b6b;
+
+  /* 🌙 Dark mode colors */
+  --color-night: #0f0f1a;
+  --color-night-surface: #1a1a2e;
+  --color-night-text: #e8e6e3;
+  --color-night-muted: #9ca3af;
+
+  /* 📐 Spacing scale */
+  --spacing-page: 2rem;
+  --spacing-section: 4rem;
+
+  /* 🔤 Typography */
+  --font-family-display: "Playfair Display", Georgia, serif;
+  --font-family-body: "Inter", system-ui, sans-serif;
+  --font-family-mono: "JetBrains Mono", monospace;
+
+  /* ✨ Animations */
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-slide-up: slide-up 0.5s ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 📖 Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-body);
+  background-color: var(--color-parchment);
+  color: var(--color-ink);
+  line-height: 1.7;
+}
+
+/* 🌙 Dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--color-night);
+    color: var(--color-night-text);
+  }
+}
+
+/* 📜 Scripture text styling */
+.scripture-text {
+  font-family: var(--font-family-body);
+  font-size: 1.125rem;
+  line-height: 2;
+  letter-spacing: 0.01em;
+}
+
+.verse-number {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  vertical-align: super;
+  margin-right: 0.25rem;
+}
+
+/* ✨ Selection highlighting */
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-scripture);
+}
