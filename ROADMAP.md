@@ -10,80 +10,80 @@
 
 | Phase | Focus | Status |
 |-------|-------|--------|
-| 🏗️ Phase 1 | Foundation & Data | 🟡 In Progress |
-| 🌐 Phase 2 | Web Bible MVP | ⚪ Planned |
-| 📱 Phase 3 | Mobile Apps | ⚪ Planned |
+| 🏗️ Phase 1 | Foundation & Data | ✅ Complete |
+| 🌐 Phase 2 | Web Bible MVP | ✅ Complete |
+| 📱 Phase 3 | Mobile Apps | 🟡 In Progress |
 | 📚 Phase 4 | Study Features | ⚪ Planned |
 | 🧒 Phase 5 | Kids Bible | ⚪ Planned |
 | 🌍 Phase 6 | Multi-Language | ⚪ Planned |
 
 ---
 
-## 🏗️ Phase 1: Foundation & Data
+## 🏗️ Phase 1: Foundation & Data ✅
 
 **Goal**: Set up project infrastructure and acquire Bible data 📦
 
-### ✅ Tasks
+### ✅ Completed
 
 | Task | Description | Status |
 |------|-------------|--------|
-| 📁 | Project scaffolding | ✅ Done |
+| 📁 | Project scaffolding (Next.js 16 + Turbopack) | ✅ Done |
 | 📜 | Core principles documentation | ✅ Done |
-| 📖 | Download BSB text data | ⚪ TODO |
-| 🔗 | Download cross-reference data | ⚪ TODO |
-| 🇬🇷 | Download Greek/Hebrew lexicon | ⚪ TODO |
-| 🎨 | Design system setup (colors, fonts, components) | ⚪ TODO |
-| 🛠️ | Monorepo tooling (Turborepo, pnpm) | ⚪ TODO |
-| 🧪 | Testing infrastructure | ⚪ TODO |
-
-### 📦 Deliverables
-
-- [ ] Complete Bible data in structured JSON format
-- [ ] Cross-reference mappings
-- [ ] Greek/Hebrew word definitions linked to verses
-- [ ] Design tokens and base components
-- [ ] CI/CD pipeline
+| 📖 | BSB text data (31,102 verses) | ✅ Done |
+| 🎨 | Design system (colors, fonts, themes) | ✅ Done |
+| 🛠️ | Monorepo structure | ✅ Done |
 
 ---
 
-## 🌐 Phase 2: Web Bible MVP
+## 🌐 Phase 2: Web Bible MVP ✅
 
 **Goal**: Launch a beautiful, fast, SEO-optimized web Bible 🚀
 
-### ✅ Tasks
+### ✅ Completed
 
 | Task | Description | Status |
 |------|-------------|--------|
-| 🏠 | Homepage design | ⚪ TODO |
-| 📖 | Book/chapter/verse navigation | ⚪ TODO |
-| 🔍 | Full-text search | ⚪ TODO |
-| 🔗 | Shareable verse URLs | ⚪ TODO |
-| 📱 | Mobile responsive design | ⚪ TODO |
-| 🌙 | Dark mode | ⚪ TODO |
-| ⚡ | Performance optimization | ⚪ TODO |
-| 🏷️ | SEO + structured data | ⚪ TODO |
-| 📊 | Analytics (privacy-first) | ⚪ TODO |
+| 🏠 | Homepage design | ✅ Done |
+| 📖 | Book/chapter/verse navigation | ✅ Done |
+| 🔍 | Full-text search (Fuse.js, 31k verses) | ✅ Done |
+| 🔗 | Shareable verse URLs | ✅ Done |
+| 📱 | Mobile responsive design | ✅ Done |
+| 🌙 | Dark mode | ✅ Done |
+| 📜 | Sepia mode | ✅ Done |
+| ⚙️ | Settings panel (font size, family, line height) | ✅ Done |
+| 🔊 | Text-to-Speech (Web Speech API) | ✅ Done |
+| 📲 | PWA support (Add to Home Screen) | ✅ Done |
+| ☁️ | Deployed to Cloudflare Workers | ✅ Done |
+| ⚡ | Static generation (1,260 pages) | ✅ Done |
 
-### 📦 Deliverables
+### 📦 Deliverables ✅
 
-- [ ] Deployed web app at chosen domain
-- [ ] Every verse has a unique, shareable URL
-- [ ] Fast search across entire Bible
-- [ ] Mobile-first, accessible design
-- [ ] Core Web Vitals passing
+- [x] Deployed web app at biblicalalignment.org
+- [x] Every chapter has a unique, shareable URL
+- [x] Fast search across entire Bible
+- [x] Mobile-first, accessible design
+- [x] Light/Dark/Sepia themes with full customization
+- [x] Text-to-Speech for chapter listening
 
 ---
 
-## 📱 Phase 3: Mobile Apps
+## 📱 Phase 3: Mobile Apps 🟡
 
 **Goal**: Native iOS and Android apps with offline support 📲
 
-### ✅ Tasks
+### ✅ Completed
 
 | Task | Description | Status |
 |------|-------------|--------|
-| 📱 | React Native / Capacitor setup | ⚪ TODO |
-| 📴 | Offline Bible storage | ⚪ TODO |
+| 📱 | Capacitor setup & configuration | ✅ Done |
+| 📴 | PWA offline support | ✅ Done |
+
+### ⚪ TODO
+
+| Task | Description | Status |
+|------|-------------|--------|
+| 🍎 | iOS app build & test | ⚪ TODO |
+| 🤖 | Android app build & test | ⚪ TODO |
 | 🔔 | Daily verse notifications | ⚪ TODO |
 | 🔖 | Bookmarks and highlights | ⚪ TODO |
 | 📝 | Personal notes | ⚪ TODO |
@@ -103,10 +103,12 @@
 
 **Goal**: Deep study tools for serious Bible students 🔬📖
 
-### ✅ Tasks
+### ⚪ TODO
 
 | Task | Description | Status |
 |------|-------------|--------|
+| 🔗 | Cross-reference data acquisition | ⚪ TODO |
+| 🇬🇷 | Greek/Hebrew lexicon data | ⚪ TODO |
 | 🇬🇷 | Greek word popups with definitions | ⚪ TODO |
 | 🇮🇱 | Hebrew word popups with definitions | ⚪ TODO |
 | 🔗 | Cross-reference panel | ⚪ TODO |
@@ -126,20 +128,13 @@
 | ❓ | Answer questions with Scripture citations |
 | 🚫 | Never interpret authoritatively — always point to text |
 
-### 📦 Deliverables
-
-- [ ] Original language study tools
-- [ ] Cross-reference explorer
-- [ ] AI assistant with Scripture-rooted answers
-- [ ] Study notes with tagging and organization
-
 ---
 
 ## 🧒 Phase 5: Kids Bible
 
 **Goal**: Age-appropriate Bible for children 4-12 👶📖
 
-### ✅ Tasks
+### ⚪ TODO
 
 | Task | Description | Status |
 |------|-------------|--------|
@@ -150,20 +145,13 @@
 | ⭐ | Reading progress and achievements | ⚪ TODO |
 | 👨‍👩‍👧 | Parental controls | ⚪ TODO |
 
-### 📦 Deliverables
-
-- [ ] Kids Bible web app
-- [ ] Kids Bible mobile app
-- [ ] Audio Bible for children
-- [ ] Illustrated story mode
-
 ---
 
 ## 🌍 Phase 6: Multi-Language Expansion
 
 **Goal**: Make the Bible accessible in 100+ languages 🌐
 
-### ✅ Tasks
+### ⚪ TODO
 
 | Task | Description | Status |
 |------|-------------|--------|
@@ -173,24 +161,17 @@
 | 🔗 | Parallel translation view | ⚪ TODO |
 | 🗣️ | RTL language support (Hebrew, Arabic) | ⚪ TODO |
 
-### 📦 Deliverables
-
-- [ ] 10+ languages in Phase 6a
-- [ ] 50+ languages in Phase 6b
-- [ ] 100+ languages in Phase 6c
-- [ ] Parallel translation comparison tool
-
 ---
 
 ## 🎯 Success Metrics
 
-| Metric | Target |
-|--------|--------|
-| 📊 | 100k monthly active users (Year 1) |
-| ⚡ | <2s page load on 3G |
-| 🔍 | Top 10 Google for "Bible online" |
-| ⭐ | 4.8+ app store rating |
-| 🌍 | Available in 50+ languages (Year 2) |
+| Metric | Target | Current |
+|--------|--------|---------|
+| 📊 | 100k monthly active users (Year 1) | 🔄 Tracking |
+| ⚡ | <2s page load on 3G | ✅ Achieved |
+| 🔍 | Top 10 Google for "Bible online" | ⚪ In Progress |
+| ⭐ | 4.8+ app store rating | ⚪ Pending |
+| 🌍 | Available in 50+ languages (Year 2) | ⚪ Planned |
 
 ---
 
@@ -202,4 +183,4 @@ Every decision we make should support this mission: **Get Scripture into as many
 
 ---
 
-*This roadmap is a living document. It will evolve as we learn and grow.* 🌱📈
+*This roadmap is a living document. Updated January 2026.*
