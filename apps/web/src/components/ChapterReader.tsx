@@ -1,11 +1,8 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { AudioControls } from './AudioControls'
 import { FloatingActionButton } from './FloatingActionButton'
 import { VerseContextMenu } from './VerseContextMenu'
-import { VerseNumbers } from './VerseNumbers'
-import { VerseJump } from './VerseJump'
 import { DistractionFreeMode } from './DistractionFreeMode'
 import { NoteEditor } from './NoteEditor'
 import { NoteIndicator } from './NoteIndicator'
@@ -28,9 +25,6 @@ interface ChapterReaderProps {
 
 export function ChapterReader({ verses, bookName, bookSlug, chapterNum }: ChapterReaderProps) {
   const [currentVerse, setCurrentVerse] = useState<number | null>(null)
-  const [highlightedVerse, setHighlightedVerse] = useState<number | null>(null)
-  const [showVerseJump, setShowVerseJump] = useState(false)
-  const [jumpPosition, setJumpPosition] = useState<{ x: number; y: number } | undefined>()
   const [noteEditorOpen, setNoteEditorOpen] = useState(false)
   const [noteEditorVerse, setNoteEditorVerse] = useState<number | undefined>()
   const [editingNote, setEditingNote] = useState<Note | undefined>()
@@ -51,37 +45,7 @@ export function ChapterReader({ verses, bookName, bookSlug, chapterNum }: Chapte
   // Reset highlight when chapter changes
   useEffect(() => {
     setCurrentVerse(null)
-    setHighlightedVerse(null)
   }, [bookName, chapterNum])
-
-  const handleVerseChange = (verseNumber: number) => {
-    setCurrentVerse(verseNumber)
-
-    // Scroll the verse into view
-    const verseEl = document.getElementById(`verse-${verseNumber}`)
-    if (verseEl) {
-      verseEl.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    }
-  }
-
-  const handleJumpToVerse = useCallback((verseNumber: number) => {
-    const verseEl = document.getElementById(`verse-${verseNumber}`)
-    if (verseEl) {
-      verseEl.scrollIntoView({ behavior: 'smooth', block: 'center' })
-
-      // Trigger golden pulse highlight
-      setHighlightedVerse(verseNumber)
-      setTimeout(() => {
-        setHighlightedVerse(null)
-      }, 1500)
-    }
-  }, [])
-
-  const handleGutterClick = useCallback((e: React.MouseEvent) => {
-    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
-    setJumpPosition({ x: rect.left + rect.width / 2, y: rect.top })
-    setShowVerseJump(true)
-  }, [])
 
   // Handle bookmark from context menu
   const handleVerseBookmark = useCallback((verseData: { verse: number; text: string; bookName: string; chapter: number }) => {
@@ -117,33 +81,9 @@ export function ChapterReader({ verses, bookName, bookSlug, chapterNum }: Chapte
 
   return (
     <>
-      {/* Audio Controls */}
-      <div className="flex justify-center mb-8">
-        <AudioControls verses={verses} onVerseChange={handleVerseChange} />
-      </div>
-
-      {/* Scripture Text with Verse Number Gutter */}
-      <div className="theme-surface rounded-2xl border theme-border shadow-sm overflow-hidden">
-        <div className="chapter-reader-layout" ref={contentRef}>
-          {/* Verse Numbers Gutter */}
-          <div
-            className="verse-gutter sticky left-0 top-0 select-none cursor-pointer"
-            onClick={handleGutterClick}
-            title="Click to jump to verse"
-          >
-            {verses.map(verse => (
-              <div
-                key={verse.verse}
-                className="verse-gutter-item"
-                data-verse={verse.verse}
-              >
-                <span className="verse-gutter-number">{verse.verse}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Scripture Content */}
-          <div className="scripture-content p-8 md:p-12 md:pl-0">
+      {/* Scripture Text */}
+      <div className="scripture-container" ref={contentRef}>
+          <div className="scripture-content">
             <div className="scripture-text theme-text">
               {verses.map(verse => (
                 <span
@@ -152,10 +92,6 @@ export function ChapterReader({ verses, bookName, bookSlug, chapterNum }: Chapte
                   className={`verse-wrapper transition-all duration-300 ${
                     currentVerse === verse.verse
                       ? 'bg-amber-200/50 dark:bg-amber-900/30 rounded px-1 -mx-1'
-                      : ''
-                  } ${
-                    highlightedVerse === verse.verse
-                      ? 'verse-jump-highlight'
                       : ''
                   }`}
                 >
@@ -185,18 +121,7 @@ export function ChapterReader({ verses, bookName, bookSlug, chapterNum }: Chapte
               ))}
             </div>
           </div>
-        </div>
       </div>
-
-      {/* Verse Jump Input */}
-      {showVerseJump && (
-        <VerseJump
-          maxVerse={verses.length}
-          onJump={handleJumpToVerse}
-          onClose={() => setShowVerseJump(false)}
-          anchorPosition={jumpPosition}
-        />
-      )}
 
       {/* Floating Action Button (Mobile) */}
       <FloatingActionButton

@@ -1,11 +1,12 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { useSettings } from '../app/providers'
+import { useSettings, accentColors } from '../app/providers'
 import { CacheStatus } from './CacheStatus'
 
 type Theme = 'light' | 'dark' | 'sepia'
 type FontFamily = 'default' | 'serif' | 'dyslexia'
+type AccentColor = 'amber' | 'blue' | 'green' | 'purple' | 'red' | 'teal'
 
 const themeOptions: { value: Theme; label: string }[] = [
   { value: 'light', label: 'Light' },
@@ -77,6 +78,7 @@ export function SettingsPanel() {
     setFontFamily,
     setLineHeight,
     setAutoTheme,
+    setAccentColor,
     autoThemeStatus,
     isSettingsOpen,
     closeSettings,
@@ -234,6 +236,38 @@ export function SettingsPanel() {
                 Tap a theme to override auto-switching temporarily
               </p>
             )}
+          </div>
+
+          {/* Accent Color Picker */}
+          <div className="space-y-3">
+            <label className="block text-sm font-medium theme-text-muted">Accent Color</label>
+            <div className="grid grid-cols-6 gap-2">
+              {(Object.keys(accentColors) as AccentColor[]).map((color) => (
+                <button
+                  key={color}
+                  onClick={() => setAccentColor(color)}
+                  className={`w-10 h-10 rounded-full transition-all flex items-center justify-center ${
+                    settings.accentColor === color
+                      ? 'scale-110 shadow-lg'
+                      : 'hover:scale-105'
+                  }`}
+                  style={{
+                    backgroundColor: accentColors[color].primary,
+                    boxShadow: settings.accentColor === color
+                      ? `0 0 0 2px var(--theme-surface), 0 0 0 4px ${accentColors[color].primary}`
+                      : undefined,
+                  }}
+                  aria-label={`Set accent color to ${accentColors[color].name}`}
+                  title={accentColors[color].name}
+                >
+                  {settings.accentColor === color && (
+                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  )}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Font Size Slider */}

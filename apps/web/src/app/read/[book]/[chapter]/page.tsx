@@ -13,11 +13,9 @@ import {
   getNextChapter,
   getBibleIndex,
 } from '@/lib/bible'
-import { NavBar } from '@/components/NavBar'
 import { ChapterReader } from '@/components/ChapterReader'
 import { SwipeableChapter } from '@/components/SwipeableChapter'
-import { ReadingProgress } from '@/components/ReadingProgress'
-import { ChapterHeader } from '@/components/ChapterHeader'
+import { CompactChapterNav } from '@/components/CompactChapterNav'
 
 interface PageProps {
   params: Promise<{ book: string; chapter: string }>
@@ -83,47 +81,20 @@ export default async function ChapterPage({ params }: PageProps) {
   return (
     <SwipeableChapter prevUrl={prevUrl} nextUrl={nextUrl}>
     <main id="main-content" className="min-h-screen theme-bg">
-      {/* 🔝 Navigation */}
-      <NavBar />
-
-      {/* 📊 Reading Progress (Mobile Only) */}
-      <ReadingProgress
+      {/* Compact Navigation Header */}
+      <CompactChapterNav
         bookName={book.name}
-        currentChapter={chapterNum}
+        bookSlug={bookSlug}
+        chapterNum={chapterNum}
         totalChapters={book.chapters}
+        prevUrl={prevUrl}
+        nextUrl={nextUrl}
       />
 
       {/* 📖 Scripture Content */}
-      <article className="pt-24 pb-12 px-6">
-        <div className="max-w-3xl mx-auto">
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm mb-6">
-            <Link
-              href="/read"
-              className="theme-text-muted hover:text-amber-600"
-            >
-              Bible
-            </Link>
-            <span className="theme-text-muted">›</span>
-            <Link
-              href={`/read/${bookToSlug(book.name)}`}
-              className="theme-text-muted hover:text-amber-600"
-            >
-              {book.name}
-            </Link>
-            <span className="theme-text-muted">›</span>
-            <span className="theme-text">Chapter {chapterNum}</span>
-          </div>
-
-          {/* Chapter Header - Clickable for quick chapter navigation */}
-          <ChapterHeader
-            bookName={book.name}
-            bookSlug={bookSlug}
-            chapterNum={chapterNum}
-            totalChapters={book.chapters}
-          />
-
-          {/* 🎧 Audio + 📜 Scripture */}
+      <article className="pt-20 pb-24 px-4 md:px-6">
+        <div className="max-w-2xl mx-auto">
+          {/* 📜 Scripture */}
           <ChapterReader
             verses={verses}
             bookName={book.name}
@@ -131,49 +102,9 @@ export default async function ChapterPage({ params }: PageProps) {
             chapterNum={chapterNum}
           />
 
-          {/* ⏮️ ⏭️ Navigation */}
-          <div className="mt-8 flex items-center justify-between">
-            {prevChapter ? (
-              <Link
-                href={`/read/${bookToSlug(prevChapter.book.name)}/${prevChapter.chapter}`}
-                className="flex items-center gap-2 px-4 py-2 theme-surface border theme-border rounded-lg theme-text hover:border-amber-400 transition-colors"
-              >
-                <span>←</span>
-                <span className="hidden sm:inline">
-                  {prevChapter.book.name} {prevChapter.chapter}
-                </span>
-                <span className="sm:hidden">Prev</span>
-              </Link>
-            ) : (
-              <div />
-            )}
-
-            <Link
-              href={`/read/${bookToSlug(book.name)}`}
-              className="px-4 py-2 theme-text-muted hover:text-amber-600 transition-colors"
-            >
-              All Chapters
-            </Link>
-
-            {nextChapter ? (
-              <Link
-                href={`/read/${bookToSlug(nextChapter.book.name)}/${nextChapter.chapter}`}
-                className="flex items-center gap-2 px-4 py-2 theme-surface border theme-border rounded-lg theme-text hover:border-amber-400 transition-colors"
-              >
-                <span className="hidden sm:inline">
-                  {nextChapter.book.name} {nextChapter.chapter}
-                </span>
-                <span className="sm:hidden">Next</span>
-                <span>→</span>
-              </Link>
-            ) : (
-              <div />
-            )}
-          </div>
-
           {/* 📜 Attribution Footer */}
-          <footer className="mt-16 pt-8 border-t theme-border text-center">
-            <p className="theme-text-muted text-sm">
+          <footer className="mt-12 pt-6 border-t theme-border text-center">
+            <p className="theme-text-muted text-xs">
               Berean Standard Bible · Public Domain
             </p>
           </footer>

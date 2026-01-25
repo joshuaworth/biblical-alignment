@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState, useCallback, useRef, Re
 
 type Theme = 'light' | 'dark' | 'sepia'
 type FontFamily = 'default' | 'serif' | 'dyslexia'
+type AccentColor = 'amber' | 'blue' | 'green' | 'purple' | 'red' | 'teal'
 
 interface Settings {
   theme: Theme
@@ -11,6 +12,59 @@ interface Settings {
   fontFamily: FontFamily
   lineHeight: number // 1.5-2.5
   autoTheme: boolean
+  accentColor: AccentColor
+}
+
+// Accent color definitions
+export const accentColors: Record<AccentColor, { name: string; primary: string; hover: string; light: string; text: string; verseNumber: string }> = {
+  amber: {
+    name: 'Amber',
+    primary: '#d97706',
+    hover: '#b45309',
+    light: '#fef3c7',
+    text: '#92400e',
+    verseNumber: '#b8922e',
+  },
+  blue: {
+    name: 'Blue',
+    primary: '#2563eb',
+    hover: '#1d4ed8',
+    light: '#dbeafe',
+    text: '#1e40af',
+    verseNumber: '#3b82f6',
+  },
+  green: {
+    name: 'Green',
+    primary: '#16a34a',
+    hover: '#15803d',
+    light: '#dcfce7',
+    text: '#166534',
+    verseNumber: '#22c55e',
+  },
+  purple: {
+    name: 'Purple',
+    primary: '#9333ea',
+    hover: '#7e22ce',
+    light: '#f3e8ff',
+    text: '#6b21a8',
+    verseNumber: '#a855f7',
+  },
+  red: {
+    name: 'Red',
+    primary: '#dc2626',
+    hover: '#b91c1c',
+    light: '#fee2e2',
+    text: '#991b1b',
+    verseNumber: '#ef4444',
+  },
+  teal: {
+    name: 'Teal',
+    primary: '#0d9488',
+    hover: '#0f766e',
+    light: '#ccfbf1',
+    text: '#115e59',
+    verseNumber: '#14b8a6',
+  },
 }
 
 interface SettingsContextType {
@@ -20,6 +74,7 @@ interface SettingsContextType {
   setFontFamily: (family: FontFamily) => void
   setLineHeight: (height: number) => void
   setAutoTheme: (enabled: boolean) => void
+  setAccentColor: (color: AccentColor) => void
   autoThemeStatus: { theme: 'light' | 'dark'; label: string } | null
   isSettingsOpen: boolean
   openSettings: () => void
@@ -32,6 +87,7 @@ const defaultSettings: Settings = {
   fontFamily: 'default',
   lineHeight: 2,
   autoTheme: false,
+  accentColor: 'amber',
 }
 
 const SettingsContext = createContext<SettingsContextType | null>(null)
@@ -57,6 +113,7 @@ const defaultContextValue: SettingsContextType = {
   setFontFamily: () => {},
   setLineHeight: () => {},
   setAutoTheme: () => {},
+  setAccentColor: () => {},
   autoThemeStatus: null,
   isSettingsOpen: false,
   openSettings: () => {},
@@ -161,6 +218,14 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
       dyslexia: '"OpenDyslexic", var(--font-family-body)',
     }
     html.style.setProperty('--scripture-font-family', fontMap[settings.fontFamily])
+
+    // Apply accent color
+    const accent = accentColors[settings.accentColor]
+    html.style.setProperty('--theme-accent', accent.primary)
+    html.style.setProperty('--theme-accent-hover', accent.hover)
+    html.style.setProperty('--theme-accent-light', accent.light)
+    html.style.setProperty('--theme-accent-text', accent.text)
+    html.style.setProperty('--theme-verse-number', accent.verseNumber)
   }, [settings, mounted])
 
   const setTheme = (theme: Theme) => {
@@ -173,6 +238,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   const setFontSize = (fontSize: number) => setSettings(s => ({ ...s, fontSize }))
   const setFontFamily = (fontFamily: FontFamily) => setSettings(s => ({ ...s, fontFamily }))
   const setLineHeight = (lineHeight: number) => setSettings(s => ({ ...s, lineHeight }))
+  const setAccentColor = (accentColor: AccentColor) => setSettings(s => ({ ...s, accentColor }))
   const setAutoTheme = (autoTheme: boolean) => {
     manualOverride.current = false
     lastAutoTheme.current = null
@@ -207,6 +273,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
         setFontFamily,
         setLineHeight,
         setAutoTheme,
+        setAccentColor,
         autoThemeStatus,
         isSettingsOpen,
         openSettings,
