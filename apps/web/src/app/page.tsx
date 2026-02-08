@@ -1,10 +1,13 @@
 import Link from 'next/link'
 import { NavBar } from '@/components/NavBar'
 import { ContinueReadingCompact } from '@/components/ContinueReading'
+import { WebsiteStructuredData } from '@/components/StructuredData'
+import { VerseOfTheDay } from '@/components/VerseOfTheDay'
 
 export default function HomePage() {
   return (
     <main id="main-content" className="min-h-screen theme-bg">
+      <WebsiteStructuredData />
       {/* 🔝 Navigation */}
       <NavBar />
 
@@ -49,6 +52,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* 📖 Verse of the Day */}
+      <VerseOfTheDay />
 
       {/* 📜 Featured Verse */}
       <section className="py-16 px-6 theme-surface">

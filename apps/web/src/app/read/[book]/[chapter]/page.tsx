@@ -16,6 +16,7 @@ import {
 import { ChapterReader } from '@/components/ChapterReader'
 import { SwipeableChapter } from '@/components/SwipeableChapter'
 import { CompactChapterNav } from '@/components/CompactChapterNav'
+import { BreadcrumbStructuredData, ChapterStructuredData } from '@/components/StructuredData'
 
 interface PageProps {
   params: Promise<{ book: string; chapter: string }>
@@ -46,9 +47,27 @@ export async function generateMetadata({ params }: PageProps) {
     return { title: 'Not Found | Biblical Alignment' }
   }
 
+  // Get first verse for description preview
+  const verses = getChapter(book.abbr, chapter)
+  const firstVerse = verses?.[0]?.text || ''
+  const description = firstVerse
+    ? `${book.name} ${chapter} (BSB): "${firstVerse.slice(0, 140)}${firstVerse.length > 140 ? '...' : ''}"`
+    : `Read ${book.name} chapter ${chapter} from the Berean Standard Bible.`
+
+  const url = `https://biblicalalignment.org/read/${bookSlug}/${chapter}`
+
   return {
-    title: `${book.name} ${chapter} | Biblical Alignment`,
-    description: `Read ${book.name} chapter ${chapter} from the Berean Standard Bible.`,
+    title: `${book.name} ${chapter} (BSB) | Biblical Alignment`,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${book.name} ${chapter} — Berean Standard Bible`,
+      description,
+      url,
+      type: 'article',
+    },
   }
 }
 
@@ -80,6 +99,13 @@ export default async function ChapterPage({ params }: PageProps) {
 
   return (
     <SwipeableChapter prevUrl={prevUrl} nextUrl={nextUrl}>
+    <BreadcrumbStructuredData bookName={book.name} bookSlug={bookSlug} chapter={chapterNum} />
+    <ChapterStructuredData
+      bookName={book.name}
+      bookSlug={bookSlug}
+      chapter={chapterNum}
+      firstVerseText={verses[0]?.text || ''}
+    />
     <main id="main-content" className="min-h-screen theme-bg">
       {/* Compact Navigation Header */}
       <CompactChapterNav

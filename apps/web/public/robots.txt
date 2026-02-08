@@ -1,0 +1,7 @@
+# Biblical Alignment — biblicalalignment.org
+# The Word of God is for everyone. All crawlers welcome.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://biblicalalignment.org/sitemap.xml

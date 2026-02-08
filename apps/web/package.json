@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "pnpm build:search && next build",
+    "build": "pnpm build:search && pnpm build:sitemap && next build",
+    "build:sitemap": "tsx scripts/build-sitemap.ts",
     "build:next": "next build",
     "build:search": "tsx scripts/build-search-index.ts",
     "start": "next start",
