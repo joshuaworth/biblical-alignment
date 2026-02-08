@@ -78,6 +78,13 @@
 | 📱 | Capacitor setup & configuration | ✅ Done |
 | 📴 | PWA offline support | ✅ Done |
 
+| 🔖 | Bookmarks and highlights (5 colors) | ✅ Done |
+| 📝 | Personal notes with timestamps | ✅ Done |
+| 👆 | Swipe navigation between chapters | ✅ Done |
+| 🎨 | 6 accent color themes | ✅ Done |
+| 🫥 | Distraction-free reading mode | ✅ Done |
+| 📊 | Reading progress tracking | ✅ Done |
+
 ### ⚪ TODO
 
 | Task | Description | Status |
@@ -85,8 +92,6 @@
 | 🍎 | iOS app build & test | ⚪ TODO |
 | 🤖 | Android app build & test | ⚪ TODO |
 | 🔔 | Daily verse notifications | ⚪ TODO |
-| 🔖 | Bookmarks and highlights | ⚪ TODO |
-| 📝 | Personal notes | ⚪ TODO |
 | 🍎 | App Store submission | ⚪ TODO |
 | 🤖 | Play Store submission | ⚪ TODO |
 
@@ -183,4 +188,4 @@ Every decision we make should support this mission: **Get Scripture into as many
 
 ---
 
-*This roadmap is a living document. Updated January 2026.*
+*This roadmap is a living document. Updated February 2026.*

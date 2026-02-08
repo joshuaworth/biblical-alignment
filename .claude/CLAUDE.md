@@ -99,10 +99,7 @@ bible-study-app/
 - 🔗 Source: [berean.bible](https://berean.bible)
 - 📥 Data: [openbible.com/download.htm](https://openbible.com/download.htm)
 
-**Additional Translations** (for comparison):
-- KJV (Public Domain)
-- ASV (Public Domain)
-- WEB (Public Domain)
+**Translation Philosophy**: BSB only. No KJV, ASV, WEB, or other English translations. The BSB uses modern, natural language that people actually speak — scholarly and transparent without being archaic.
 
 ---
 

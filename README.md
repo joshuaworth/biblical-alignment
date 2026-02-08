@@ -14,7 +14,7 @@
 |---|---|
 | 📦 **Type** | Monorepo · Web + Mobile + Kids Apps |
 | 🛠️ **Stack** | TypeScript · React · React Native · Capacitor |
-| 📊 **Status** | 🟡 Planning & Scaffolding |
+| 📊 **Status** | 🟡 Phase 3 — Mobile Apps In Progress |
 | 📜 **License** | MIT (Code) · Public Domain (Bible Text) |
 | 🎯 **Mission** | Align your life with Scripture — accessible to everyone, everywhere |
 
@@ -39,11 +39,13 @@ The Berean Standard Bible is:
 - ✅ **Public domain** — Free forever, no licensing restrictions
 - ✅ **Scholarly** — Made by credentialed evangelical scholars
 - ✅ **Transparent** — Shows all manuscript variants
-- ✅ **Modern English** — Readable without being dumbed down
+- ✅ **Modern English** — Readable, natural language people actually speak
 
 But the current online version looks **outdated** 😬. Young people won't use something that feels like 2005.
 
 **Our mission**: Take the best free Bible translation and make it **radically accessible** with modern design, modern tech, and modern distribution 🚀
+
+> **Why BSB only?** Other translations like the KJV use archaic English that's too far from how people talk to be useful for daily reading. The BSB is scholarly, transparent, and sounds like real language. One translation, done right. 📖
 
 ---
 
@@ -87,7 +89,7 @@ Every feature must pass these gates or it doesn't ship:
 |-------|------------|
 | 🌐 **Web** | Next.js · React · TailwindCSS |
 | 📱 **Mobile** | React Native · Capacitor |
-| 🗄️ **Data** | SQLite (local) · Supabase (sync) |
+| 🗄️ **Data** | JSON (local) · Supabase (sync) |
 | 🤖 **AI** | Claude API · Local embeddings |
 | 🔍 **Search** | Meilisearch or Typesense |
 | 📊 **Analytics** | Plausible (privacy-first) |
@@ -121,7 +123,7 @@ biblical-alignment/
 │   └── 📁 search/                  # Search functionality
 │
 ├── 📁 data/                        # Bible data
-│   ├── 📁 translations/            # BSB, KJV, ASV, etc.
+│   ├── 📁 translations/            # BSB (Berean Standard Bible)
 │   ├── 📁 cross-references/        # Cross-reference data
 │   └── 📁 lexicon/                 # Greek/Hebrew lexicon
 │
