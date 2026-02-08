@@ -10,6 +10,8 @@ import { useSpeech } from '@/hooks/useSpeech'
 import { useReadingPosition } from '@/hooks/useReadingPosition'
 import { useDistractionFree } from '@/hooks/useDistractionFree'
 import { useNotesStore, Note } from '@/stores/notesStore'
+import { useBookmarkStore } from '@/stores/bookmarkStore'
+import { CrossReferencePanel } from './CrossReferencePanel'
 
 interface Verse {
   verse: number
@@ -28,6 +30,7 @@ export function ChapterReader({ verses, bookName, bookSlug, chapterNum }: Chapte
   const [noteEditorOpen, setNoteEditorOpen] = useState(false)
   const [noteEditorVerse, setNoteEditorVerse] = useState<number | undefined>()
   const [editingNote, setEditingNote] = useState<Note | undefined>()
+  const [crossRefVerse, setCrossRefVerse] = useState<number | null>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
   // Speech hook for FAB
@@ -42,6 +45,9 @@ export function ChapterReader({ verses, bookName, bookSlug, chapterNum }: Chapte
   // Notes store
   const { getNotesForVerse, hasNoteForVerse } = useNotesStore()
 
+  // Bookmark store
+  const { toggleBookmark } = useBookmarkStore()
+
   // Reset highlight when chapter changes
   useEffect(() => {
     setCurrentVerse(null)
@@ -49,9 +55,13 @@ export function ChapterReader({ verses, bookName, bookSlug, chapterNum }: Chapte
 
   // Handle bookmark from context menu
   const handleVerseBookmark = useCallback((verseData: { verse: number; text: string; bookName: string; chapter: number }) => {
-    console.log('Bookmarking verse:', verseData)
-    // TODO: Implement actual bookmark functionality
-  }, [])
+    toggleBookmark({
+      book: verseData.bookName,
+      chapter: verseData.chapter,
+      verse: verseData.verse,
+      text: verseData.text,
+    })
+  }, [toggleBookmark])
 
   // Handle add note from context menu
   const handleAddNote = useCallback((verseData: { verse: number; text: string; bookName: string; chapter: number }) => {
@@ -79,6 +89,11 @@ export function ChapterReader({ verses, bookName, bookSlug, chapterNum }: Chapte
     setNoteEditorVerse(undefined)
   }, [])
 
+  // Handle cross-reference request from context menu
+  const handleCrossRef = useCallback((verseData: { verse: number }) => {
+    setCrossRefVerse(crossRefVerse === verseData.verse ? null : verseData.verse)
+  }, [crossRefVerse])
+
   return (
     <>
       {/* Scripture Text */}
@@ -104,6 +119,7 @@ export function ChapterReader({ verses, bookName, bookSlug, chapterNum }: Chapte
                     }}
                     onBookmark={handleVerseBookmark}
                     onAddNote={handleAddNote}
+                    onCrossRef={handleCrossRef}
                     isHighlighted={currentVerse === verse.verse}
                   >
                     <span className="verse-text">{verse.text}</span>
@@ -117,6 +133,15 @@ export function ChapterReader({ verses, bookName, bookSlug, chapterNum }: Chapte
                     )}
                     {' '}
                   </VerseContextMenu>
+                  {crossRefVerse === verse.verse && (
+                    <CrossReferencePanel
+                      bookSlug={bookSlug}
+                      bookName={bookName}
+                      chapter={chapterNum}
+                      verse={verse.verse}
+                      onClose={() => setCrossRefVerse(null)}
+                    />
+                  )}
                 </span>
               ))}
             </div>
@@ -133,8 +158,17 @@ export function ChapterReader({ verses, bookName, bookSlug, chapterNum }: Chapte
           }
         }}
         onBookmark={() => {
-          // TODO: Implement bookmark functionality
-          console.log('Bookmark clicked')
+          if (currentVerse) {
+            const verse = verses.find(v => v.verse === currentVerse)
+            if (verse) {
+              toggleBookmark({
+                book: bookName,
+                chapter: chapterNum,
+                verse: verse.verse,
+                text: verse.text,
+              })
+            }
+          }
         }}
         onFocus={distractionFree.enter}
         bookName={bookName}

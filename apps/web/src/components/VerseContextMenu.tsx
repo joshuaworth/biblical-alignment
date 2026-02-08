@@ -19,6 +19,7 @@ interface VerseContextMenuProps {
   verseData: VerseData
   onBookmark?: (verseData: VerseData) => void
   onAddNote?: (verseData: VerseData) => void
+  onCrossRef?: (verseData: VerseData) => void
   isHighlighted?: boolean
 }
 
@@ -34,7 +35,7 @@ interface MenuAction {
   active?: boolean
 }
 
-export function VerseContextMenu({ children, verseData, onBookmark, onAddNote, isHighlighted }: VerseContextMenuProps) {
+export function VerseContextMenu({ children, verseData, onBookmark, onAddNote, onCrossRef, isHighlighted }: VerseContextMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [position, setPosition] = useState<MenuPosition>({ x: 0, y: 0 })
   const [mounted, setMounted] = useState(false)
@@ -271,6 +272,13 @@ export function VerseContextMenu({ children, verseData, onBookmark, onAddNote, i
     closeMenu()
   }, [onAddNote, verseData, closeMenu, haptics])
 
+  // Show cross-references for verse
+  const handleCrossRef = useCallback(() => {
+    haptics.light()
+    onCrossRef?.(verseData)
+    closeMenu()
+  }, [onCrossRef, verseData, closeMenu, haptics])
+
   // Copy link to verse
   const handleCopyLink = useCallback(async () => {
     haptics.light()
@@ -287,6 +295,7 @@ export function VerseContextMenu({ children, verseData, onBookmark, onAddNote, i
 
   const actions: MenuAction[] = [
     { icon: '📝', label: 'Add note', onClick: handleAddNote },
+    { icon: '📖', label: 'Cross-references', onClick: handleCrossRef },
     { icon: '🎨', label: highlightColor ? 'Change highlight' : 'Highlight', onClick: handleHighlight, active: !!highlightColor },
     { icon: '🔖', label: isBookmarked ? 'Remove bookmark' : 'Bookmark', onClick: handleBookmark, active: isBookmarked },
     { icon: '📋', label: 'Copy verse text', onClick: handleCopyText },
