@@ -52,13 +52,13 @@ export default function AboutPage() {
             <p>
               We believe the Bible should be radically accessible. No account
               required. No subscription. No ads. No denomination pushed. Just the
-              Word — in a modern, beautiful interface that works on every device.
+              Word, in a modern, beautiful interface that works on every device.
             </p>
             <p>
               We use the{' '}
               <strong className="theme-text">Berean Standard Bible (BSB)</strong>
               , a modern English translation released into the public domain. It&apos;s
-              accurate, readable, and free for everyone — exactly as Scripture
+              accurate, readable, and free for everyone. Exactly as Scripture
               should be.
             </p>
           </div>
@@ -91,7 +91,7 @@ export default function AboutPage() {
           </blockquote>
           <p className="mt-6 theme-text-muted text-center">
             This verse is our namesake and our standard. We don&apos;t tell you
-            what to believe — we help you examine the text for yourself.
+            what to believe. We help you examine the text for yourself.
           </p>
         </div>
       </section>
@@ -104,7 +104,7 @@ export default function AboutPage() {
               Our Principles
             </h2>
             <p className="text-stone-300 text-lg">
-              Every feature we build must pass these gates — or it doesn&apos;t
+              Every feature we build must pass these gates, or it doesn&apos;t
               ship.
             </p>
           </div>
@@ -131,13 +131,13 @@ export default function AboutPage() {
             <PrincipleCard
               gate="D"
               title="Popularity Does Not Equal Truth"
-              description="The number of people who believe something is irrelevant to whether it is true. The text is the test — not the crowd."
+              description="The number of people who believe something is irrelevant to whether it is true. The text is the test, not the crowd."
               verse="Matthew 7:13-14"
             />
             <PrincipleCard
               gate="E"
               title="Help Users Test, Don't Tell Them What to Believe"
-              description="This app exists to help you test claims against the text, not to interpret Scripture for you. We show you the Word — you decide."
+              description="This app exists to help you test claims against the text, not to interpret Scripture for you. We show you the Word. You decide."
               verse="1 Thessalonians 5:21"
             />
           </div>
@@ -160,11 +160,11 @@ export default function AboutPage() {
                 What We Are
               </h3>
               <ul className="space-y-4">
-                <ListItem icon="📖" text="Scripture-first — the text is the test" />
-                <ListItem icon="🔓" text="Transparent — show the manuscripts, show the translation choices" />
-                <ListItem icon="🆓" text="Free — God's Word should never be paywalled" />
-                <ListItem icon="🌍" text="Open source — MIT License, community-driven" />
-                <ListItem icon="📱" text="Modern — beautiful design, works on every device" />
+                <ListItem icon="📖" text="Scripture-first. The text is the test." />
+                <ListItem icon="🔓" text="Transparent. Show the manuscripts, show the translation choices." />
+                <ListItem icon="🆓" text="Free. God's Word should never be paywalled." />
+                <ListItem icon="🌍" text="Open source. MIT License, community-driven." />
+                <ListItem icon="📱" text="Modern. Beautiful design, works on every device." />
               </ul>
             </div>
 
@@ -180,11 +180,11 @@ export default function AboutPage() {
                 What We Are Not
               </h3>
               <ul className="space-y-4">
-                <ListItem icon="🚫" text="Not denominational — we don't push any label" />
-                <ListItem icon="🚫" text="Not tradition-first — historical continuity doesn't prove truth" />
-                <ListItem icon="🚫" text="Not AI-as-authority — the model never interprets for you" />
-                <ListItem icon="🚫" text="Not ad-supported — no ads, no tracking, no data selling" />
-                <ListItem icon="🚫" text="Not paywalled — every feature is free, always" />
+                <ListItem icon="🚫" text="Not denominational. We don't push any label." />
+                <ListItem icon="🚫" text="Not tradition-first. Historical continuity doesn't prove truth." />
+                <ListItem icon="🚫" text="Not AI-as-authority. The model never interprets for you." />
+                <ListItem icon="🚫" text="Not ad-supported. No ads, no tracking, no data selling." />
+                <ListItem icon="🚫" text="Not paywalled. Every feature is free, always." />
               </ul>
             </div>
           </div>
