@@ -56,6 +56,54 @@ export default function HomePage() {
       {/* 📖 Verse of the Day */}
       <VerseOfTheDay />
 
+      {/* 📚 Explore by Topic */}
+      <section className="py-16 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold theme-text mb-4">
+            Explore by Topic
+          </h2>
+          <p className="theme-text-muted text-lg mb-8 max-w-2xl mx-auto">
+            Find verses on the subjects that matter most to you.
+          </p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-8">
+            {[
+              { icon: '🛡️', name: 'Salvation', id: 'salvation' },
+              { icon: '🙏', name: 'Faith', id: 'faith' },
+              { icon: '🕊️', name: 'Anxiety', id: 'anxiety-worry' },
+              { icon: '❤️', name: 'Love', id: 'love' },
+              { icon: '🌅', name: 'Hope', id: 'hope' },
+              { icon: '💧', name: 'Forgiveness', id: 'forgiveness' },
+              { icon: '📖', name: 'Wisdom', id: 'wisdom' },
+              { icon: '💪', name: 'Strength', id: 'strength' },
+              { icon: '☮️', name: 'Peace', id: 'peace' },
+              { icon: '🦁', name: 'Courage', id: 'courage' },
+            ].map((topic) => (
+              <Link
+                key={topic.id}
+                href={`/topics/${topic.id}`}
+                className="flex flex-col items-center gap-2 p-4 rounded-xl border transition-all hover:shadow-md"
+                style={{
+                  backgroundColor: 'var(--theme-surface)',
+                  borderColor: 'var(--theme-border)',
+                }}
+              >
+                <span className="text-2xl">{topic.icon}</span>
+                <span className="text-sm font-medium theme-text">{topic.name}</span>
+              </Link>
+            ))}
+          </div>
+
+          <Link
+            href="/topics"
+            className="text-sm font-medium transition-colors hover:underline"
+            style={{ color: 'var(--theme-accent)' }}
+          >
+            View all 25 topics →
+          </Link>
+        </div>
+      </section>
+
       {/* 📜 Featured Verse */}
       <section className="py-16 px-6 theme-surface">
         <div className="max-w-3xl mx-auto">

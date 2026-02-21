@@ -694,8 +694,120 @@ select:focus-visible {
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
   .skeleton-shimmer {
     animation: none;
     background: var(--theme-border);
+  }
+}
+
+/* 🖨️ Print Stylesheet */
+@media print {
+  @page {
+    margin: 1in;
+  }
+
+  /* Reset colors for print */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.6;
+  }
+
+  /* Hide non-content elements */
+  .bottom-nav,
+  .skip-to-content,
+  .fab-container,
+  [style*="bottom: 80px"],
+  nav[role="navigation"],
+  .settings-panel,
+  button,
+  .touch-target-large[aria-label*="menu"],
+  .bottom-nav-spacer {
+    display: none !important;
+  }
+
+  /* Keep navigation links that look like buttons visible in print (except interactive) */
+  a[href] {
+    text-decoration: none;
+    color: black !important;
+  }
+
+  /* Clean up theme backgrounds */
+  .theme-bg,
+  .theme-surface,
+  .theme-surface-alt,
+  .theme-accent-light {
+    background: white !important;
+  }
+
+  .theme-text,
+  .theme-text-muted {
+    color: black !important;
+  }
+
+  /* Scripture formatting */
+  .scripture-text {
+    font-size: 11pt;
+    line-height: 1.8;
+    color: black !important;
+  }
+
+  .verse-number,
+  .verse-number-inline {
+    color: #666 !important;
+    font-size: 0.65em;
+  }
+
+  /* Prevent page breaks inside verse content */
+  .verse-context-trigger,
+  p,
+  blockquote {
+    break-inside: avoid;
+  }
+
+  /* Remove shadows and borders */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Remove animations */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Show URL after external links */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  /* Don't show URL for internal links */
+  a[href^="/"]::after {
+    content: none;
+  }
+
+  /* Page footer */
+  main::after {
+    content: "biblicalalignment.org";
+    display: block;
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ccc;
+    font-size: 10pt;
+    color: #999;
   }
 }

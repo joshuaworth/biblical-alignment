@@ -76,6 +76,85 @@ const NT_BOOKS = [
   { slug: 'revelation', name: 'Revelation', chapters: 22 },
 ]
 
+// Old Testament books
+const OT_BOOKS = [
+  { slug: 'genesis', name: 'Genesis', chapters: 50 },
+  { slug: 'exodus', name: 'Exodus', chapters: 40 },
+  { slug: 'leviticus', name: 'Leviticus', chapters: 27 },
+  { slug: 'numbers', name: 'Numbers', chapters: 36 },
+  { slug: 'deuteronomy', name: 'Deuteronomy', chapters: 34 },
+  { slug: 'joshua', name: 'Joshua', chapters: 24 },
+  { slug: 'judges', name: 'Judges', chapters: 21 },
+  { slug: 'ruth', name: 'Ruth', chapters: 4 },
+  { slug: '1-samuel', name: '1 Samuel', chapters: 31 },
+  { slug: '2-samuel', name: '2 Samuel', chapters: 24 },
+  { slug: '1-kings', name: '1 Kings', chapters: 22 },
+  { slug: '2-kings', name: '2 Kings', chapters: 25 },
+  { slug: '1-chronicles', name: '1 Chronicles', chapters: 29 },
+  { slug: '2-chronicles', name: '2 Chronicles', chapters: 36 },
+  { slug: 'ezra', name: 'Ezra', chapters: 10 },
+  { slug: 'nehemiah', name: 'Nehemiah', chapters: 13 },
+  { slug: 'esther', name: 'Esther', chapters: 10 },
+  { slug: 'job', name: 'Job', chapters: 42 },
+  { slug: 'psalms', name: 'Psalms', chapters: 150 },
+  { slug: 'proverbs', name: 'Proverbs', chapters: 31 },
+  { slug: 'ecclesiastes', name: 'Ecclesiastes', chapters: 12 },
+  { slug: 'song-of-solomon', name: 'Song of Solomon', chapters: 8 },
+  { slug: 'isaiah', name: 'Isaiah', chapters: 66 },
+  { slug: 'jeremiah', name: 'Jeremiah', chapters: 52 },
+  { slug: 'lamentations', name: 'Lamentations', chapters: 5 },
+  { slug: 'ezekiel', name: 'Ezekiel', chapters: 48 },
+  { slug: 'daniel', name: 'Daniel', chapters: 12 },
+  { slug: 'hosea', name: 'Hosea', chapters: 14 },
+  { slug: 'joel', name: 'Joel', chapters: 3 },
+  { slug: 'amos', name: 'Amos', chapters: 9 },
+  { slug: 'obadiah', name: 'Obadiah', chapters: 1 },
+  { slug: 'jonah', name: 'Jonah', chapters: 4 },
+  { slug: 'micah', name: 'Micah', chapters: 7 },
+  { slug: 'nahum', name: 'Nahum', chapters: 3 },
+  { slug: 'habakkuk', name: 'Habakkuk', chapters: 3 },
+  { slug: 'zephaniah', name: 'Zephaniah', chapters: 3 },
+  { slug: 'haggai', name: 'Haggai', chapters: 2 },
+  { slug: 'zechariah', name: 'Zechariah', chapters: 14 },
+  { slug: 'malachi', name: 'Malachi', chapters: 4 },
+]
+
+// Whole Bible (OT + NT) in canonical order
+const WHOLE_BIBLE_BOOKS = [...OT_BOOKS, ...NT_BOOKS]
+
+// Generate a plan that evenly distributes chapters across exactly N days
+function generateEvenPlan(
+  books: { slug: string; name: string; chapters: number }[],
+  targetDays: number,
+): ReadingDay[] {
+  // Flatten all chapters into a list
+  const allChapters: { slug: string; book: string; chapter: number }[] = []
+  for (const book of books) {
+    for (let ch = 1; ch <= book.chapters; ch++) {
+      allChapters.push({ slug: book.slug, book: book.name, chapter: ch })
+    }
+  }
+
+  const totalChapters = allChapters.length
+  const days: ReadingDay[] = []
+  let chapterIndex = 0
+
+  for (let day = 1; day <= targetDays; day++) {
+    // Calculate how many chapters this day should get
+    const remainingDays = targetDays - day + 1
+    const remainingChapters = totalChapters - chapterIndex
+    const chaptersToday = Math.ceil(remainingChapters / remainingDays)
+
+    const readings = allChapters.slice(chapterIndex, chapterIndex + chaptersToday)
+    if (readings.length > 0) {
+      days.push({ day, readings })
+    }
+    chapterIndex += chaptersToday
+  }
+
+  return days
+}
+
 // Gospels only
 const GOSPEL_BOOKS = [
   { slug: 'matthew', name: 'Matthew', chapters: 28 },
@@ -107,6 +186,14 @@ function generatePsalmsProverbsPlan(): ReadingDay[] {
 }
 
 export const READING_PLANS: ReadingPlan[] = [
+  {
+    id: 'bible-365',
+    name: 'Bible in a Year',
+    description: 'Read through the entire Bible — Genesis to Revelation — in 365 days.',
+    duration: 365,
+    icon: '📖',
+    days: generateEvenPlan(WHOLE_BIBLE_BOOKS, 365),
+  },
   {
     id: 'nt-90',
     name: 'New Testament in 90 Days',
