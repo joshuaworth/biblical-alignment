@@ -6,6 +6,7 @@
 import Link from 'next/link'
 import { getBooksByTestament, bookToSlug } from '@/lib/bible'
 import { NavBar } from '@/components/NavBar'
+import { Footer } from '@/components/Footer'
 import { ContinueReading } from '@/components/ContinueReading'
 
 export const metadata = {
@@ -107,6 +108,8 @@ export default function ReadPage() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </main>
   )
 }

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { TOPICAL_GROUPS } from '@/data/topical-index'
+import { Footer } from '@/components/Footer'
 
 export const metadata = {
   title: 'Topical Verse Index | Biblical Alignment',
@@ -82,16 +83,7 @@ export default function TopicsPage() {
         </div>
       </section>
 
-      {/* Back to Home */}
-      <section className="pb-16 px-6 text-center">
-        <Link
-          href="/"
-          className="text-sm font-medium transition-colors hover:underline"
-          style={{ color: 'var(--theme-accent)' }}
-        >
-          ← Back to Home
-        </Link>
-      </section>
+      <Footer />
     </main>
   )
 }

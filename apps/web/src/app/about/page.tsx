@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { NavBar } from '@/components/NavBar'
+import { Footer } from '@/components/Footer'
 
 export const metadata = {
   title: 'About | Biblical Alignment',
@@ -254,15 +255,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Footer verse */}
-      <section className="py-12 px-6 theme-surface border-t theme-border">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="theme-text-muted text-sm italic">
-            &ldquo;Your word is a lamp for my feet, a light on my path.&rdquo;
-            — Psalm 119:105
-          </p>
-        </div>
-      </section>
+      <Footer />
     </main>
   )
 }

@@ -12,6 +12,7 @@ import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import Fuse from 'fuse.js'
 import { NavBar } from '@/components/NavBar'
+import { Footer } from '@/components/Footer'
 import { BookFilterSelector } from '@/components/BookFilterSelector'
 import { useVerseReference } from '@/hooks/useVerseReference'
 import { useSearchHistoryStore } from '@/stores/searchHistoryStore'
@@ -393,6 +394,8 @@ export default function SearchPage() {
           )}
         </div>
       </div>
+
+      <Footer />
     </main>
   )
 }

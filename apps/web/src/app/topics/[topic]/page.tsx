@@ -5,6 +5,7 @@ import {
   getTopicById,
   getAllTopics,
 } from '@/data/topical-index'
+import { Footer } from '@/components/Footer'
 
 interface PageProps {
   params: Promise<{ topic: string }>
@@ -162,6 +163,8 @@ export default async function TopicPage({ params }: PageProps) {
           })()}
         </div>
       </section>
+
+      <Footer />
     </main>
   )
 }

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { NavBar } from '@/components/NavBar'
+import { Footer } from '@/components/Footer'
 import { READING_PLANS, ReadingPlan } from '@/data/reading-plans'
 import { useReadingPlanStore } from '@/stores/readingPlanStore'
 
@@ -67,6 +68,8 @@ export default function PlansPage() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </main>
   )
 }
