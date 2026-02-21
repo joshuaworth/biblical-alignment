@@ -189,7 +189,7 @@ export const READING_PLANS: ReadingPlan[] = [
   {
     id: 'bible-365',
     name: 'Bible in a Year',
-    description: 'Read through the entire Bible — Genesis to Revelation — in 365 days.',
+    description: 'Read through the entire Bible, Genesis to Revelation, in 365 days.',
     duration: 365,
     icon: '📖',
     days: generateEvenPlan(WHOLE_BIBLE_BOOKS, 365),
@@ -197,7 +197,7 @@ export const READING_PLANS: ReadingPlan[] = [
   {
     id: 'nt-90',
     name: 'New Testament in 90 Days',
-    description: 'Read through the entire New Testament — 3 chapters per day.',
+    description: 'Read through the entire New Testament. 3 chapters per day.',
     duration: 90,
     icon: '📜',
     days: generateSequentialPlan(NT_BOOKS, 3),
@@ -213,7 +213,7 @@ export const READING_PLANS: ReadingPlan[] = [
   {
     id: 'psalms-proverbs-31',
     name: 'Psalms & Proverbs',
-    description: '31 days of wisdom and worship — 1 Proverb and 5 Psalms daily.',
+    description: '31 days of wisdom and worship. 1 Proverb and 5 Psalms daily.',
     duration: 31,
     icon: '🎵',
     days: generatePsalmsProverbsPlan(),

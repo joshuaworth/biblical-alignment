@@ -25,13 +25,13 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   return {
-    title: `${topic.name} — Bible Verses | Biblical Alignment`,
+    title: `${topic.name} | Bible Verses | Biblical Alignment`,
     description: `${topic.description}. ${topic.verses.length} curated verses from the Berean Standard Bible.`,
     alternates: {
       canonical: `https://biblicalalignment.org/topics/${topic.id}`,
     },
     openGraph: {
-      title: `${topic.name} — Bible Verses`,
+      title: `${topic.name} | Bible Verses`,
       description: topic.description,
       url: `https://biblicalalignment.org/topics/${topic.id}`,
     },

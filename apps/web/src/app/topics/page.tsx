@@ -4,14 +4,14 @@ import { TOPICAL_GROUPS } from '@/data/topical-index'
 export const metadata = {
   title: 'Topical Verse Index | Biblical Alignment',
   description:
-    'Browse Bible verses by topic — salvation, faith, anxiety, love, hope, and more. 25 curated topics with verses from the Berean Standard Bible.',
+    'Browse Bible verses by topic: salvation, faith, anxiety, love, hope, and more. 25 curated topics with verses from the Berean Standard Bible.',
   alternates: {
     canonical: 'https://biblicalalignment.org/topics',
   },
   openGraph: {
-    title: 'Topical Verse Index — Biblical Alignment',
+    title: 'Topical Verse Index | Biblical Alignment',
     description:
-      'Browse Bible verses by topic — salvation, faith, anxiety, love, hope, and more.',
+      'Browse Bible verses by topic: salvation, faith, anxiety, love, hope, and more.',
     url: 'https://biblicalalignment.org/topics',
   },
 }

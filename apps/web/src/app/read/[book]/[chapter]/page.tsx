@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: PageProps) {
       canonical: url,
     },
     openGraph: {
-      title: `${book.name} ${chapter} — Berean Standard Bible`,
+      title: `${book.name} ${chapter} | Berean Standard Bible`,
       description,
       url,
       type: 'article',

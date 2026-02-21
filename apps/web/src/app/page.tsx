@@ -28,7 +28,7 @@ export default function HomePage() {
 
           <p className="text-xl theme-text-muted mb-10 max-w-2xl mx-auto leading-relaxed">
             A radically modern Bible platform built on truth. No denomination pushed.
-            No tradition over Scripture. Just the Word — beautifully accessible to everyone.
+            No tradition over Scripture. Just the Word, beautifully accessible to everyone.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

@@ -10,7 +10,7 @@ export function WebsiteStructuredData() {
     '@type': 'WebSite',
     name: 'Biblical Alignment',
     url: 'https://biblicalalignment.org',
-    description: 'A modern, free Bible platform built on the Berean Standard Bible (BSB). Read, search, and study Scripture — no ads, no paywalls.',
+    description: 'A modern, free Bible platform built on the Berean Standard Bible (BSB). Read, search, and study Scripture. No ads, no paywalls.',
     inLanguage: 'en',
     publisher: {
       '@type': 'Organization',

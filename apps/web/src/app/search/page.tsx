@@ -443,7 +443,7 @@ function ReferenceResult({
             {reference.bookName} {reference.chapter}
           </div>
           <div className="theme-text-muted text-sm">
-            {verses.length} verses — tap to read the full chapter
+            {verses.length} verses · tap to read the full chapter
           </div>
           {verses[0] && (
             <div className="mt-3 theme-text-muted text-sm italic leading-relaxed">
@@ -482,7 +482,7 @@ function ReferenceResult({
           ))}
         </div>
         {verses.length === 0 && (
-          <div className="theme-text-muted text-sm mt-2">Verse not found — tap to open the chapter</div>
+          <div className="theme-text-muted text-sm mt-2">Verse not found · tap to open the chapter</div>
         )}
       </Link>
     </div>
